@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/* Studio chrome tokens - the app shell stays neutral dark so the ten card
+   templates (each with its own palette) are the color in the room. */
+:root {
+  --ink: #0b0b10;
+  --surface: #12121a;
+  --raised: #1a1a26;
+  --line: rgba(255, 255, 255, 0.08);
+  --fg: #f2f2f7;
+  --muted: #8e8ea3;
+  --accent: #a3e635;
+  --accent-ink: #1a2e05;
+}
+
+html, body {
+  background: var(--ink);
+  color: var(--fg);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+/* Subtle blueprint-ish grid behind the stage, faint enough to stay chrome. */
+.studio-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* ---- Print: only the card, at true business-card size (3.5in x 2in). ---- */
+#print-card { display: none; }
+@media print {
+  body * { visibility: hidden; }
+  #print-card, #print-card * { visibility: visible; }
+  #print-card {
+    display: block;
+    position: fixed;
+    inset: 0;
+    width: 3.5in;
+    height: 2in;
+    overflow: hidden;
+  }
+  /* Scale the 560x320 design canvas onto the physical card. */
+  #print-card .print-scale {
+    transform: scale(0.6); /* 560 * 0.6 = 336px = 3.5in at 96dpi */
+    transform-origin: top left;
+  }
+  @page { size: 3.5in 2in; margin: 0; }
+}
