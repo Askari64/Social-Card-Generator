@@ -7,13 +7,17 @@
 // the product.
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import CardStage from "@/components/CardStage";
+import CardStage, { CARD_W, useElementWidth } from "@/components/CardStage";
 import { TEMPLATES } from "@/lib/templates";
 import { SAMPLE_PROFILE } from "@/lib/profile";
 import { vcardQrDataUrl } from "@/lib/qr";
 
 // Onyx leads the fan; Glass and Sunset peek from behind.
 const FAN = [0, 5, 7];
+
+// Hero showcase card carries just the owner's first name on top of the
+// fictional John Doe contact details - the studio itself stays all John Doe.
+const HERO_PROFILE = { ...SAMPLE_PROFILE, name: "Askari" };
 
 const FEATURES = [
   {
@@ -42,6 +46,26 @@ const STEPS = [
 
 export default function Landing() {
   const [qrs, setQrs] = useState<(string | null)[]>(FAN.map(() => null));
+
+  // The fan scales to its column: on phones the center card shrinks to fit
+  // and the side cards tuck inside the column instead of sticking out past
+  // the screen edge. width=0 is the pre-measure (SSR/first) render - it uses
+  // the desktop scales and is corrected before paint.
+  const { ref: fanRef, width: fanW } = useElementWidth<HTMLDivElement>();
+  const [vw, setVw] = useState(0);
+  useEffect(() => {
+    const f = () => setVw(window.innerWidth);
+    f();
+    window.addEventListener("resize", f);
+    return () => window.removeEventListener("resize", f);
+  }, []);
+  // Desktop look only when the container hit its max width AND there is real
+  // room on both sides for the fanned cards to stick out (they extend 56px
+  // past the container). Anything narrower gets the tucked-in mobile fan.
+  const fanDesktop = fanW === 0 || (fanW >= CARD_W * 0.8 && vw >= 560);
+  const centerScale = fanDesktop ? 0.8 : (fanW * 0.86) / CARD_W;
+  const sideScale = fanDesktop ? 0.62 : centerScale * 0.775;
+  const sideOffset = fanDesktop ? -56 : 20; // 20px inset clears the 10deg-rotated corners
 
   // Real vCard QR for the sample profile, themed per template - the hero
   // card genuinely scans into John Doe's contact card.
@@ -144,19 +168,19 @@ export default function Landing() {
         </div>
 
         {/* hero fan - three real templates, real scannable QR */}
-        <div className="rise rise-3 relative mx-auto w-full max-w-md">
-          <div className="floaty-7 absolute top-14 -left-14" aria-hidden>
+        <div ref={fanRef} className="rise rise-3 relative mx-auto w-full max-w-md">
+          <div className="floaty-7 absolute top-14" style={{ left: sideOffset }} aria-hidden>
             <div className="-rotate-[10deg] opacity-90">
-              <CardStage p={SAMPLE_PROFILE} qr={qrs[1]} templateId={FAN[1]} scale={0.62} />
+              <CardStage p={HERO_PROFILE} qr={qrs[1]} templateId={FAN[1]} scale={sideScale} />
             </div>
           </div>
-          <div className="floaty-85 absolute top-14 -right-14" aria-hidden>
+          <div className="floaty-85 absolute top-14" style={{ right: sideOffset }} aria-hidden>
             <div className="rotate-[10deg] opacity-90">
-              <CardStage p={SAMPLE_PROFILE} qr={qrs[2]} templateId={FAN[2]} scale={0.62} />
+              <CardStage p={HERO_PROFILE} qr={qrs[2]} templateId={FAN[2]} scale={sideScale} />
             </div>
           </div>
           <div className="floaty relative z-10 mx-auto w-fit">
-            <CardStage p={SAMPLE_PROFILE} qr={qrs[0]} templateId={FAN[0]} scale={0.8} />
+            <CardStage p={HERO_PROFILE} qr={qrs[0]} templateId={FAN[0]} scale={centerScale} />
             <p
               className="mt-4 text-center text-[11px] uppercase"
               style={{ letterSpacing: "0.22em", color: "var(--muted)" }}

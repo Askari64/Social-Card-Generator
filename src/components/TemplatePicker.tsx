@@ -1,7 +1,7 @@
 "use client";
 // All ten templates rendered live in miniature - the picker is not screenshots
 // or swatches, it is the actual cards with your actual details in them.
-import CardStage from "./CardStage";
+import { FitStage } from "./CardStage";
 import { TEMPLATES } from "@/lib/templates";
 import type { CardProfile } from "@/lib/profile";
 
@@ -31,7 +31,7 @@ export default function TemplatePicker({ p, qrs, active, onPick }: Props) {
               outlineOffset: 2,
             }}
           >
-            <CardStage p={p} qr={qrs[t.id] ?? null} templateId={t.id} scale={THUMB_W / 560} />
+            <FitStage p={p} qr={qrs[t.id] ?? null} templateId={t.id} maxScale={THUMB_W / 560} />
           </div>
           <div className="mt-2 flex items-baseline justify-between">
             <span className="text-[13px] font-semibold" style={{ color: active === t.id ? "var(--accent)" : "var(--fg)" }}>

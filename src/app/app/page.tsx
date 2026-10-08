@@ -5,7 +5,7 @@
 // fields never make a template look broken.
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import CardStage from "@/components/CardStage";
+import CardStage, { FitStage } from "@/components/CardStage";
 import TemplatePicker from "@/components/TemplatePicker";
 import EditorForm from "@/components/EditorForm";
 import ExportBar from "@/components/ExportBar";
@@ -88,8 +88,8 @@ export default function Home() {
         <div className="order-1 lg:order-2">
           <Rise delay={0.05}>
             <div className="studio-grid rounded-2xl p-6 sm:p-10" style={{ background: "var(--surface)", border: "1px solid var(--line)" }}>
-              <div className="mx-auto w-fit max-w-full overflow-hidden">
-                <CardStage ref={cardRef} p={preview} qr={qrs[templateId] ?? null} templateId={templateId} scale={1} />
+              <div className="max-w-full overflow-hidden">
+                <FitStage ref={cardRef} p={preview} qr={qrs[templateId] ?? null} templateId={templateId} maxScale={1} />
               </div>
               <div className="mt-6">
                 <ExportBar cardRef={cardRef} profile={profile} />
