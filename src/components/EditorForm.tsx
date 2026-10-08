@@ -13,7 +13,7 @@ const FIELDS: { key: keyof Omit<CardProfile, "photo">; label: string; placeholde
   { key: "name", label: "Full name", placeholder: "Ada Lovelace" },
   { key: "title", label: "Role / title", placeholder: "Software Engineer" },
   { key: "company", label: "Company", placeholder: "Studio, Inc." },
-  { key: "phone", label: "Phone", placeholder: "+91 98765 43210", type: "tel" },
+  { key: "phone", label: "Phone", placeholder: "+1 555 010 2030", type: "tel" },
   { key: "email", label: "Email", placeholder: "you@domain.com", type: "email" },
   { key: "website", label: "Website", placeholder: "yoursite.dev" },
   { key: "linkedin", label: "LinkedIn", placeholder: "in/yourname or URL" },
