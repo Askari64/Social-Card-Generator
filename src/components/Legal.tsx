@@ -10,7 +10,7 @@ export function LegalShell({ title, updated, children }: { title: string; update
         <Link href="/" style={{ fontFamily: "var(--font-display), serif", fontSize: 24, letterSpacing: "-0.02em" }}>
           card studio<span style={{ color: "var(--accent)" }}>.</span>
         </Link>
-        <Link href="/" className="text-[13px] font-semibold" style={{ color: "var(--accent)" }}>
+        <Link href="/app" className="text-[13px] font-semibold" style={{ color: "var(--accent)" }}>
           Back to the studio
         </Link>
       </header>

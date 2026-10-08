@@ -47,3 +47,45 @@ html, body {
   }
   @page { size: 3.5in 2in; margin: 0; }
 }
+
+/* ---- Landing extras ---- */
+/* Seamless name marquee: two copies of the list, translate -50% loops it. */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* Landing entrance motion - pure CSS so the page reads fully even before
+   hydration (same philosophy as the studio's print/export robustness). */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise { opacity: 0; animation: rise-in 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) forwards; }
+.rise-1 { animation-delay: 0.05s; }
+.rise-2 { animation-delay: 0.12s; }
+.rise-3 { animation-delay: 0.2s; }
+.rise-4 { animation-delay: 0.28s; }
+.rise-5 { animation-delay: 0.36s; }
+.rise-6 { animation-delay: 0.45s; }
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.floaty { animation: floaty 6s ease-in-out infinite; }
+.floaty-7 { animation: floaty 7s ease-in-out infinite; }
+.floaty-85 { animation: floaty 8.5s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise { opacity: 1; animation: none; }
+  .floaty, .floaty-7, .floaty-85 { animation: none; }
+}
