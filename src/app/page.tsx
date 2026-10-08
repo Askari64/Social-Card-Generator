@@ -4,6 +4,7 @@
 // what the user typed); the preview fills blanks with sample data so empty
 // fields never make a template look broken.
 import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import CardStage from "@/components/CardStage";
 import TemplatePicker from "@/components/TemplatePicker";
 import EditorForm from "@/components/EditorForm";
@@ -106,8 +107,12 @@ export default function Home() {
         </div>
       </div>
 
-      <footer className="mx-auto max-w-7xl px-6 pb-10 text-[12px]" style={{ color: "var(--muted)" }}>
-        The QR code is a real vCard - anyone who scans it gets your contact saved straight to their phone. No account, no server, nothing uploaded.
+      <footer className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-6 pb-10 text-[12px]" style={{ color: "var(--muted)" }}>
+        <span>The QR code is a real vCard - anyone who scans it gets your contact saved straight to their phone. No account, no server, nothing uploaded.</span>
+        <span className="flex gap-4">
+          <Link href="/privacy" className="underline underline-offset-2">Privacy Policy</Link>
+          <Link href="/terms" className="underline underline-offset-2">Terms of Use</Link>
+        </span>
       </footer>
 
       {/* Print-only copy: rendered at exact 3.5in x 2in, visible only in print. */}
