@@ -6,7 +6,7 @@ export default function TermsPage() {
   return (
     <LegalShell title="Terms of Use" updated="October 8, 2026">
       <P>
-        Card Studio is a free personal project by Askari Rizvi. By using it, you agree to these terms.
+        Card Studio is a free personal project by John Doe. By using it, you agree to these terms.
       </P>
 
       <H>The service</H>
@@ -43,7 +43,7 @@ export default function TermsPage() {
 
       <H>Contact</H>
       <P>
-        Questions about these terms: reach Askari Rizvi through the channel you got this app from.
+        Questions about these terms: reach John Doe through the channel you got this app from.
       </P>
     </LegalShell>
   );

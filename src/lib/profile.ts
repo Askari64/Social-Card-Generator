@@ -16,16 +16,16 @@ export interface CardProfile {
 
 // Demo data so every template looks alive before the user types a word.
 export const SAMPLE_PROFILE: CardProfile = {
-  name: "Askari Rizvi",
-  title: "Software Engineer",
-  company: "Studio Rizvi",
-  phone: "+91 98765 43210",
-  email: "hello@askari.dev",
-  website: "askari.dev",
-  linkedin: "in/askaririzvi",
-  instagram: "@askari.codes",
-  github: "Askari64",
-  twitter: "@askari_dev",
+  name: "John Doe",
+  title: "Product Designer",
+  company: "Acme Studio",
+  phone: "+1 555 010 2030",
+  email: "hello@johndoe.dev",
+  website: "johndoe.dev",
+  linkedin: "in/johndoe",
+  instagram: "@johndoe",
+  github: "johndoe",
+  twitter: "@johndoe",
   photo: null,
 };
 

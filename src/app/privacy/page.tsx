@@ -8,7 +8,7 @@ export default function PrivacyPage() {
   return (
     <LegalShell title="Privacy Policy" updated="October 8, 2026">
       <P>
-        Card Studio is a personal project by Askari Rizvi. It is built to be private by design:
+        Card Studio is a personal project by John Doe. It is built to be private by design:
         the app runs entirely in your browser, and the details you put on your card never leave your device.
       </P>
 
@@ -60,7 +60,7 @@ export default function PrivacyPage() {
 
       <H>Contact</H>
       <P>
-        Questions about this policy: reach Askari Rizvi through the channel you got this app from.
+        Questions about this policy: reach John Doe through the channel you got this app from.
       </P>
     </LegalShell>
   );
